@@ -167,3 +167,6 @@ ciceklab/training_chunks/
 ciceklab/notes.md
 ciceklab/protein.fa
 ciceklab/rna.fa
+
+# Python cache
+*.pyc

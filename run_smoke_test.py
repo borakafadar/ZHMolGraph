@@ -1,17 +1,18 @@
+"""Smoke test: train VecNN on a tiny subset of the ciceklab data."""
 import os
 import sys
 
 def main():
-    print("Running Smoke Test for ciceklab dataset...")
-    # The smoke test could just run train_ciceklab on a very small subset of data,
-    # or limit the number of epochs.
-    # To implement this properly, we can call train_ciceklab.py with arguments,
-    # but for simplicity, we will instruct the user to just run precompute_embeddings
-    # and then run train_ciceklab with a smoke_test flag.
-    
-    cmd = f"{sys.executable} ciceklab/train_ciceklab.py --smoke_test"
-    print(f"Executing: {cmd}")
-    os.system(cmd)
+    print("=" * 60)
+    print("ZHMolGraph Smoke Test  (1000 samples, 2 epochs)")
+    print("=" * 60)
+    # Run from repo root so graphsage_src imports work
+    repo_dir = os.path.dirname(os.path.abspath(__file__))
+    cmd = f'"{sys.executable}" ciceklab/train_ciceklab.py --smoke_test'
+    print(f"Running: {cmd}\n")
+    os.chdir(repo_dir)
+    exit_code = os.system(cmd)
+    sys.exit(exit_code >> 8)  # propagate exit code
 
 if __name__ == '__main__':
     main()
